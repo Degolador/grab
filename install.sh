@@ -2,19 +2,19 @@
 
 # ==============================================================================
 # Grab - Universal Media Downloader
-# Script de Instalação Automática (Termux & Linux)
+# Script de Instalação Automática Rápida (Termux & Linux)
 # by Pepeu
 # ==============================================================================
 
 set -e
 
 echo ""
-echo "  Grab v1.0 • Script de Instalação"
+echo "  Grab • Instalação Rápida"
 echo "  ──────────────────────────────────────────"
 echo ""
 
 # Pergunta confirmação ao usuário antes de qualquer instalação
-read -p "  Deseja prosseguir com a instalação e atualização dos pacotes? [S/n]: " CONFIRM
+read -p "  Deseja instalar e configurar as dependências agora? [S/n]: " CONFIRM
 CONFIRM=${CONFIRM:-S}
 
 if [[ "$CONFIRM" =~ ^[Nn]$ ]]; then
@@ -29,24 +29,25 @@ echo "  [1/5] Verificando ambiente do sistema..."
 if [ -d "/data/data/com.termux/files/home" ]; then
     IS_TERMUX=true
     termux-setup-storage 2>/dev/null || true
-    echo "        Ambiente: Termux (Android)"
+    echo "        ✓ Termux (Android) detectado"
 else
     IS_TERMUX=false
-    echo "        Ambiente: Linux / POSIX"
+    echo "        ✓ Sistema Linux / POSIX detectado"
 fi
 
 echo ""
-echo "  [2/5] Atualizando pacotes e repositórios..."
+echo "  [2/5] Atualizando índice de repositórios..."
 if [ "$IS_TERMUX" = true ]; then
-    pkg update -y && pkg upgrade -y
+    pkg update -y
 else
     if command -v apt-get &> /dev/null; then
-        sudo apt-get update -y && sudo apt-get upgrade -y
+        sudo apt-get update -y
     fi
 fi
+echo "        ✓ Índice de pacotes atualizado"
 
 echo ""
-echo "  [3/5] Instalando dependências (Node.js, Python, FFmpeg, Git)..."
+echo "  [3/5] Instalando dependências essenciais (Node.js, Python, FFmpeg, Git)..."
 if [ "$IS_TERMUX" = true ]; then
     pkg install -y nodejs python ffmpeg git
 else
@@ -54,21 +55,22 @@ else
         sudo apt-get install -y nodejs npm python3 python3-pip ffmpeg git
     fi
 fi
+echo "        ✓ Dependências de sistema prontas"
 
 echo ""
-echo "  [4/5] Instalando extratores Python (yt-dlp, gallery-dl)..."
-python3 -m pip install --upgrade --quiet yt-dlp gallery-dl instaloader
+echo "  [4/5] Instalando extratores de mídia Python (yt-dlp, gallery-dl)..."
+python3 -m pip install --upgrade yt-dlp gallery-dl instaloader
 
 echo ""
-echo "  [5/5] Instalando dependências do projeto Grab..."
-npm install --quiet
+echo "  [5/5] Instalando pacotes do projeto Grab..."
+npm install
 
 echo ""
 echo "  ──────────────────────────────────────────"
-echo "  ✓ Instalação concluída com sucesso!"
+echo "  ✓ Instalação concluída!"
 echo ""
 echo "  Para iniciar o Grab:"
-echo "    • Modo CLI (Terminal):     node index.js"
+echo "    • Modo Terminal (CLI):     node index.js"
 echo "    • Modo Web Hub (Navegador): node index.js web"
 echo ""
 echo "  by Pepeu"
