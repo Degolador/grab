@@ -1,0 +1,20 @@
+{
+  "name": "grab",
+  "version": "1.0.0",
+  "description": "Minimalist Universal Media Downloader CLI & Web Hub for Termux & Linux",
+  "main": "index.js",
+  "bin": {
+    "grab": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js web",
+    "web": "node index.js web",
+    "cli": "node index.js"
+  },
+  "author": "Pepeu",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

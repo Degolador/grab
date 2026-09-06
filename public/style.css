@@ -1,0 +1,311 @@
+/* ==========================================================================
+   Grab - Minimalist Monochrome Design System (Claude Code Style)
+   ========================================================================== */
+
+:root {
+    --bg-main: #121214;
+    --bg-card: #1c1c1e;
+    --bg-card-solid: #1c1c1e;
+    --bg-input: #2c2c2e;
+    --border-color: #2c2c2e;
+    --border-glow: #3a3a3c;
+
+    --text-main: #f2f2f7;
+    --text-muted: #8e8e93;
+    --text-inverse: #1c1c1e;
+
+    --primary: #e5e5ea;
+    --primary-hover: #ffffff;
+    --primary-glow: rgba(255, 255, 255, 0.1);
+
+    --accent-cyan: #d1d1d6;
+    --accent-pink: #d1d1d6;
+    --accent-green: #e5e5ea;
+    --accent-amber: #d1d1d6;
+    --accent-red: #e5e5ea;
+
+    --focus-ring: #ffffff;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+
+    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --transition: all 0.2s ease;
+}
+
+[data-theme="light"] {
+    --bg-main: #f2f2f7;
+    --bg-card: #ffffff;
+    --bg-card-solid: #ffffff;
+    --bg-input: #e5e5ea;
+    --border-color: #e5e5ea;
+    --border-glow: #d1d1d6;
+
+    --text-main: #1c1c1e;
+    --text-muted: #6c6c70;
+    --text-inverse: #ffffff;
+
+    --primary: #2c2c2e;
+    --primary-hover: #1c1c1e;
+}
+
+[data-contrast="high"] {
+    --bg-main: #000000;
+    --bg-card: #000000;
+    --bg-card-solid: #000000;
+    --bg-input: #1c1c1e;
+    --border-color: #ffffff;
+    --text-main: #ffffff;
+    --text-muted: #d1d1d6;
+    --primary: #ffffff;
+    --primary-hover: #e5e5ea;
+    --text-inverse: #000000;
+    --focus-ring: #ffffff;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: var(--font-sans);
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.5;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 10px;
+    background: var(--primary);
+    color: var(--text-inverse);
+    padding: 8px 16px;
+    z-index: 1000;
+    transition: top 0.2s;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.skip-link:focus {
+    top: 10px;
+}
+
+/* Header Minimalista */
+.app-header {
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+    padding: 16px 24px;
+}
+
+.header-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+}
+
+.brand-text h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+    display: inline;
+}
+
+.version-tag {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-left: 8px;
+    font-weight: 400;
+}
+
+.header-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.icon-btn, .btn {
+    background: var(--bg-input);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.icon-btn:hover, .btn:hover {
+    background: var(--border-color);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--text-inverse);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    opacity: 0.95;
+}
+
+/* Layout Container */
+.layout-container {
+    max-width: 1000px;
+    width: 100%;
+    margin: 24px auto;
+    padding: 0 20px;
+    flex: 1;
+}
+
+.app-nav {
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+}
+
+.nav-tab {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-tab:hover {
+    color: var(--text-main);
+    background: var(--bg-card);
+}
+
+.nav-tab.active {
+    color: var(--text-main);
+    background: var(--bg-card);
+    font-weight: 600;
+    border-bottom: 2px solid var(--text-main);
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+/* Cards Minimalistas */
+.card, .glass-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+.card-header h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.input-with-button {
+    display: flex;
+    gap: 8px;
+}
+
+input[type="text"], textarea {
+    flex: 1;
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+input[type="text"]:focus, textarea:focus {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: -1px;
+}
+
+/* Modal */
+dialog.media-modal {
+    margin: auto;
+    background: transparent;
+    border: none;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.75);
+}
+
+/* Rodapé Limpo */
+.app-footer {
+    text-align: center;
+    padding: 24px 0;
+    border-top: 1px solid var(--border-color);
+    margin-top: auto;
+}
+
+.app-footer p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.app-footer .credits {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
