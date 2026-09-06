@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function applyTheme() {
         document.documentElement.setAttribute("data-theme", state.theme);
-        themeIcon.textContent = state.theme === "dark" ? "🌙" : "☀️";
+        themeIcon.textContent = state.theme === "dark" ? "◑" : "◐";
         localStorage.setItem("dd_theme", state.theme);
     }
 
@@ -158,10 +158,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     copyNetworkBtn.addEventListener("click", () => {
         navigator.clipboard.writeText(networkUrlInput.value).then(() => {
-            copyNetworkBtn.textContent = "✓ Copiado!";
+            copyNetworkBtn.textContent = "Copiado";
             announceToScreenReader("Link copiado para a área de transferência");
             setTimeout(() => {
-                copyNetworkBtn.textContent = "Copiar Link";
+                copyNetworkBtn.textContent = "Copiar";
             }, 2000);
         });
     });
@@ -339,7 +339,7 @@ document.addEventListener("DOMContentLoaded", () => {
             state.activeEventSource = null;
 
             singleProgressCard.classList.add("hidden");
-            alert(`✕ Falha no download: ${errorMsg}`);
+            alert(`Falha no download: ${errorMsg}`);
             announceToScreenReader(`Erro no download: ${errorMsg}`);
         });
     });
@@ -441,14 +441,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         if (event === "item_start") {
                             const statusEl = document.getElementById(`batch-status-${data.index}`);
-                            if (statusEl) statusEl.textContent = "⏳ Baixando...";
+                            if (statusEl) statusEl.textContent = "Baixando...";
                         } else if (event === "item_complete") {
                             const statusEl = document.getElementById(`batch-status-${data.index}`);
-                            if (statusEl) statusEl.innerHTML = `✅ Concluído (<a href="${data.result.downloadUrl}" download>Baixar</a>)`;
+                            if (statusEl) statusEl.innerHTML = `OK (<a href="${data.result.downloadUrl}" download>Baixar</a>)`;
                             batchCompletedCount.textContent = parseInt(batchCompletedCount.textContent) + 1;
                         } else if (event === "item_error") {
                             const statusEl = document.getElementById(`batch-status-${data.index}`);
-                            if (statusEl) statusEl.textContent = "❌ Erro";
+                            if (statusEl) statusEl.textContent = "Erro";
                         }
                     }
                 }
@@ -506,9 +506,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const card = document.createElement("article");
             card.className = "file-item-card";
 
-            let icon = "🎬";
-            if (file.category === "audio") icon = "🎵";
-            if (file.category === "image") icon = "🖼️";
+            let icon = "MP4";
+            if (file.category === "audio") icon = "MP3";
+            if (file.category === "image") icon = "IMG";
 
             card.innerHTML = `
                 <div class="file-card-header">
@@ -520,13 +520,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
                 <div class="file-card-actions">
                     <button class="btn btn-secondary play-btn" data-name="${encodeURIComponent(file.name)}" data-type="${file.category}">
-                        ▶ Player
+                        Play
                     </button>
-                    <a href="${file.downloadUrl}" class="btn btn-primary" download title="Baixar pro seu celular/PC">
-                        💾 Baixar
+                    <a href="${file.downloadUrl}" class="btn btn-primary" download title="Baixar">
+                        Baixar
                     </a>
-                    <button class="btn btn-danger delete-btn" data-name="${encodeURIComponent(file.name)}" title="Deletar arquivo">
-                        🗑️
+                    <button class="btn btn-danger delete-btn" data-name="${encodeURIComponent(file.name)}" title="Deletar">
+                        Excluir
                     </button>
                 </div>
             `;
